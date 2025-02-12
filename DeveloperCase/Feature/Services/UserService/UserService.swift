@@ -7,7 +7,7 @@
 
 import Foundation
 
-final class UserService {
+class UserService {
     private let networkService: NetworkServiceProtocol
 
     init(networkService: NetworkServiceProtocol = NetworkService(baseURL: Constants.baseURL)) {
@@ -23,14 +23,4 @@ final class UserService {
             type: [User].self
         )
     }
-
-//    func fetchUser(id: Int) async throws -> User {
-//        return try await networkService.request(
-//            "\(Constants.usersPath)/\(id)",
-//            method: .get,
-//            parameters: nil,
-//            headers: nil,
-//            type: User.self
-//        )
-//    }
 }

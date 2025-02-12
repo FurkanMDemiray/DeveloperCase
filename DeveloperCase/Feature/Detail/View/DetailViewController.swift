@@ -8,7 +8,6 @@
 import UIKit
 import MapKit
 
-
 final class DetailViewController: UIViewController {
 
     var viewModel: DetailViewModelProtocol! {
@@ -16,8 +15,8 @@ final class DetailViewController: UIViewController {
             viewModel.delegate = self
         }
     }
-
-
+    
+    // MARK: - UI Elements
     @IBOutlet private weak var nameLabel: UILabel!
     @IBOutlet private weak var userNameLabel: UILabel!
     @IBOutlet private weak var mailLabel: UILabel!
@@ -32,11 +31,14 @@ final class DetailViewController: UIViewController {
     @IBOutlet private weak var companyContainer: UIView!
     @IBOutlet private weak var companyCatchPhraseLabel: UILabel!
 
+    // MARK: - Lifecycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
         configureAllUI()
+        title = "User Detail"
     }
 
+    // MARK: - Private Methods
     private func configureContainers() {
         let containers = [userNameMailContainer, adressContainer, companyContainer]
 
@@ -100,7 +102,6 @@ final class DetailViewController: UIViewController {
         mapView.addAnnotation(annotation)
     }
 
-
     private func configureAllUI() {
         configureContainers()
         setUpNameMailContainerUI()
@@ -111,6 +112,4 @@ final class DetailViewController: UIViewController {
 
 }
 
-extension DetailViewController: DetailViewModelDelegate {
-
-}
+extension DetailViewController: DetailViewModelDelegate { }

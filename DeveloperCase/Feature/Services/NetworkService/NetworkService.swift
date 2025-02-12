@@ -7,8 +7,9 @@
 
 import Foundation
 
-// Network Errors
+// MARK: - Network Errors
 enum NetworkError: Error {
+    // Comprehensive error cases for better error handling
     case invalidURL
     case noData
     case decodingError
@@ -17,16 +18,18 @@ enum NetworkError: Error {
     case unknown
 }
 
-// HTTP Methods
+// MARK: - HTTP Methods
 enum HTTPMethod: String {
+    // Standard HTTP methods following RESTful conventions
     case get = "GET"
     case post = "POST"
     case put = "PUT"
     case delete = "DELETE"
 }
 
-// Network Manager Protocol
+// MARK: - Network Protocol
 protocol NetworkServiceProtocol {
+    // Generic request method supporting any Decodable type
     func request<T: Decodable>(_ endpoint: String,
         method: HTTPMethod,
         parameters: [String: Any]?,
@@ -34,8 +37,9 @@ protocol NetworkServiceProtocol {
         type: T.Type) async throws -> T
 }
 
-// Network Manager Implementation
+// MARK: - Network Implementation
 final class NetworkService: NetworkServiceProtocol {
+    // Base URL injected for flexibility and testing
     private let baseURL: String
 
     init(baseURL: String) {

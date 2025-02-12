@@ -26,12 +26,6 @@ final class UserTableViewCell: UITableViewCell {
         configureContainerView()
     }
 
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
-
     private func configureContainerView() {
         containerView.layer.cornerRadius = 10
         containerView.layer.borderWidth = 1
@@ -47,8 +41,8 @@ final class UserTableViewCell: UITableViewCell {
 extension UserTableViewCell: UserCellViewModelDelegate {
 
     func configureCell(with user: User) {
-        userNameLabel.text = user.name
-        mailLabel.text = user.email
+        userNameLabel.text = "Name: \(user.name ?? "name")"
+        mailLabel.text = "E-Mail: \(user.email ?? "email")"
     }
 }
 

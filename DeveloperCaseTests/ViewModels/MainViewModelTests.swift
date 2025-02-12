@@ -22,26 +22,29 @@ final class MainViewModelTests: XCTestCase {
         super.tearDown()
     }
 
-    func testFetchUsersSuccess() async {
+    func testFetchUsersSuccess() async throws {
+        // Given
+        mockUserService.shouldFail = false // Explicitly set to false
+        mockUserService.setupMockUsers()
 
-        DispatchQueue.main.async { [weak self] in
-            guard let self else { return }
-            mockUserService.setupMockUsers()
-            mockViewModel.fetchUsers()
-        }
+        // When
+        await mockViewModel.fetchUsers()
+        
         // Then
+        XCTAssertFalse(mockViewModel.getUsers.isEmpty)
         XCTAssertEqual(mockViewModel.getUsers.count, 2)
         XCTAssertEqual(mockViewModel.getUsers[0].name, "Test User 1")
         XCTAssertEqual(mockViewModel.getUsers[1].email, "test2@example.com")
         XCTAssertTrue(mockDelegate.usersFetchedCalled)
     }
 
-    func testFetchUsersFailure() async {
+    func testFetchUsersFailure() async throws {
         // Given
         mockUserService.shouldFail = true
+        mockUserService.mockUsers = [] // Clear any existing mock users
 
         // When
-        mockViewModel.fetchUsers()
+        await mockViewModel.fetchUsers()
 
         // Then
         XCTAssertTrue(mockViewModel.getUsers.isEmpty)

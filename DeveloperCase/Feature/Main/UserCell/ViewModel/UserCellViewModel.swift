@@ -30,8 +30,4 @@ final class UserCellViewModel {
 
 extension UserCellViewModel: UserCellViewModelProtocol {
     var getUser: User? { user }
-
-
-
-
 }

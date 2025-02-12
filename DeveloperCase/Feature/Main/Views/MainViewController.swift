@@ -9,21 +9,27 @@ import UIKit
 
 final class MainViewController: UIViewController {
 
+    // Injected ViewModel following MVVM pattern
     var viewModel: MainViewModelProtocol! {
         didSet {
             viewModel.delegate = self
         }
     }
 
+    // MARK: - UI Elements
     @IBOutlet private weak var tableView: UITableView!
 
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
+    // MARK: - Lifecycle Methods
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        title = "Users"
         configureTableView()
         viewModel.fetchUsers()
     }
 
+    // MARK: - Private Methods
     private func configureTableView() {
+        // Configure tableView with custom cell and styling
         tableView.delegate = self
         tableView.dataSource = self
         tableView.showsVerticalScrollIndicator = false
@@ -32,6 +38,7 @@ final class MainViewController: UIViewController {
     }
 }
 
+// MARK: - TableView Delegate & DataSource
 extension MainViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -61,7 +68,9 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
 
 }
 
+// MARK: - ViewModel Delegate
 extension MainViewController: MainViewModelDelegate {
+    // Update UI on main thread when data is fetched
     func usersFetched() {
         DispatchQueue.main.async {
             self.tableView.reloadData()

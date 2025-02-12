@@ -17,14 +17,14 @@ final class DeveloperCaseUITestsLaunchTests: XCTestCase {
         continueAfterFailure = false
     }
 
-    @MainActor
     func testLaunch() throws {
         let app = XCUIApplication()
         app.launch()
-
-        // Insert steps here to perform after app launch but before taking a screenshot,
-        // such as logging into a test account or navigating somewhere in the app
-
+        
+        // Verify initial screen loads
+        XCTAssertTrue(app.navigationBars["Users"].waitForExistence(timeout: 2))
+        
+        // Take launch screen screenshot
         let attachment = XCTAttachment(screenshot: app.screenshot())
         attachment.name = "Launch Screen"
         attachment.lifetime = .keepAlways

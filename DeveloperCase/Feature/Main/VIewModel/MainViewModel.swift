@@ -13,26 +13,38 @@ protocol MainViewModelDelegate: AnyObject {
 
 protocol MainViewModelProtocol {
     var delegate: MainViewModelDelegate? { get set }
-    var users: [User] { get }
+    var getUsers: [User] { get }
     func fetchUsers()
+
 }
 
 final class MainViewModel {
 
     weak var delegate: MainViewModelDelegate?
-    
+    private let userService = UserService()
+    private var users: [User] = []
 
 }
 
 extension MainViewModel: MainViewModelProtocol {
-    var users: [User] {
-        return []
-    }
-    
+
+    var getUsers: [User] { users }
+
     func fetchUsers() {
+        Task {
+            do {
+                let users = try await userService.fetchUsers()
+                users.forEach { user in
+                    print(user.name ?? "")
+                    self.users.append(user)
+                }
+                delegate?.usersFetched()
+            } catch {
+                print("Error fetching users: \(error)")
+            }
+        }
 
     }
-    
 
 }
 

@@ -21,9 +21,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let window = UIWindow(windowScene: windowScene)
 
         let mainViewController = MainViewController()
+        let viewModel = MainViewModel()
+        mainViewController.viewModel = viewModel
+
         let navigationController = UINavigationController(rootViewController: mainViewController)
-        navigationController.navigationBar.prefersLargeTitles = true
-        navigationController.navigationBar.tintColor = .black
         window.rootViewController = navigationController
         self.window = window
         window.makeKeyAndVisible()

@@ -2,7 +2,7 @@
   <h1>Developer Case</h1>
 </div>
  
-Welcome to Game List. A simple game list app that shows games.
+Welcome to User List. A simple user list app that shows users.
 
 ## Table of Contents
 - [Features](#features)
@@ -12,24 +12,18 @@ Welcome to Game List. A simple game list app that shows games.
   - [Getting Started](#getting-started)
   - [Prerequisites](#prerequisites)
 - [Usage](#usage)
-  - [Games](#games)
+  - [Users](#users)
   - [Detail](#detail)
 - [Known Issues](#known-issues)
 - [Improvements](#improvements)
 
 ## Features
 
-  **Games:**
-- It is a simple application where you can look at the name, release date, rating of the games.
-  
- **Searching:**
-- You can search for games by their names.
+  **Users:**
+- It is a user application where you can look at the name, email, user name etc. of the users.
   
  **Detail:**
-- You can look details of games.
-
- **Get Suggestion:**
-- You can get suggestion from gemini ai based on your feature selection on the screen.
+- You can look details of users.
 
 ## Screenshots
 

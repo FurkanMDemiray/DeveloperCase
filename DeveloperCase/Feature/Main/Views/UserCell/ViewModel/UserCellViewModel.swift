@@ -9,25 +9,29 @@ import Foundation
 
 protocol UserCellViewModelProtocol {
     var delegate: UserCellViewModelDelegate? { get set }
-//    var name: String { get }
-//    var username: String { get }
-//    var email: String { get }
-//    var phone: String { get }
-//    var website: String { get }
-//    var address: String { get }
-//    var company: String { get }
+    var getUser: User? { get }
 }
 
 protocol UserCellViewModelDelegate: AnyObject {
-    func userFetched()
+    func configureCell(with user: User)
 }
 
 final class UserCellViewModel {
 
     weak var delegate: UserCellViewModelDelegate?
+    private var user: User?
+
+    func configure(with user: User) {
+        self.user = user
+        delegate?.configureCell(with: user)
+    }
 
 }
 
 extension UserCellViewModel: UserCellViewModelProtocol {
+    var getUser: User? { user }
+
+
+
 
 }

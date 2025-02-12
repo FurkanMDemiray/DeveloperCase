@@ -50,7 +50,13 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        // 
+        let user = viewModel.getUsers[indexPath.row]
+
+        let viewController = DetailViewController()
+        let detailViewModel = DetailViewModel(user: user)
+        viewController.viewModel = detailViewModel
+
+        navigationController?.pushViewController(viewController, animated: true)
     }
 
 }

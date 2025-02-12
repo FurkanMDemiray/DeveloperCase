@@ -35,7 +35,6 @@ extension MainViewModel: MainViewModelProtocol {
             do {
                 let users = try await userService.fetchUsers()
                 users.forEach { user in
-                    print(user.name ?? "")
                     self.users.append(user)
                 }
                 delegate?.usersFetched()
@@ -43,7 +42,6 @@ extension MainViewModel: MainViewModelProtocol {
                 print("Error fetching users: \(error)")
             }
         }
-
     }
 
 }

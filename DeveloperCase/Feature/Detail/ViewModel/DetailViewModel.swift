@@ -13,7 +13,7 @@ protocol DetailViewModelProtocol {
 }
 
 protocol DetailViewModelDelegate: AnyObject {
-    func configureView(with user: User)
+
 }
 
 final class DetailViewModel {
@@ -21,10 +21,10 @@ final class DetailViewModel {
     weak var delegate: DetailViewModelDelegate?
     private var user: User?
 
-    func configure(with user: User) {
+    init(user: User) {
         self.user = user
-        delegate?.configureView(with: user)
     }
+
 }
 
 extension DetailViewModel: DetailViewModelProtocol {

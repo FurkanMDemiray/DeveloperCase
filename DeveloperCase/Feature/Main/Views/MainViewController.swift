@@ -17,11 +17,6 @@ final class MainViewController: UIViewController {
 
     @IBOutlet private weak var tableView: UITableView!
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-    }
-
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         configureTableView()
@@ -40,9 +35,7 @@ final class MainViewController: UIViewController {
 extension MainViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print(viewModel.getUsers.count)
-        return viewModel.getUsers.count
-
+        viewModel.getUsers.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -56,9 +49,11 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
         return cell
     }
 
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        // 
+    }
+
 }
-
-
 
 extension MainViewController: MainViewModelDelegate {
     func usersFetched() {

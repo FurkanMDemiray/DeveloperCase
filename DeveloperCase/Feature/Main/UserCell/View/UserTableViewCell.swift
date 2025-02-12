@@ -19,7 +19,7 @@ final class UserTableViewCell: UITableViewCell {
 
     @IBOutlet private weak var userNameLabel: UILabel!
     @IBOutlet private weak var mailLabel: UILabel!
-    @IBOutlet weak var containerView: UIView!
+    @IBOutlet private weak var containerView: UIView!
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -32,7 +32,7 @@ final class UserTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
 
-    private func configureContainerView(){
+    private func configureContainerView() {
         containerView.layer.cornerRadius = 10
         containerView.layer.borderWidth = 1
         containerView.layer.borderColor = UIColor.lightGray.cgColor
@@ -47,7 +47,6 @@ final class UserTableViewCell: UITableViewCell {
 extension UserTableViewCell: UserCellViewModelDelegate {
 
     func configureCell(with user: User) {
-        print("configure cell")
         userNameLabel.text = user.name
         mailLabel.text = user.email
     }

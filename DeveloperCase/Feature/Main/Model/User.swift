@@ -8,7 +8,7 @@
 import Foundation
 
 // MARK: - User
-struct User: Codable {
+struct User: Decodable {
     let id: Int?
     let name, username, email: String?
     let address: Address?
@@ -17,17 +17,17 @@ struct User: Codable {
 }
 
 // MARK: - Address
-struct Address: Codable {
+struct Address: Decodable {
     let street, suite, city, zipcode: String?
     let geo: Geo?
 }
 
 // MARK: - Geo
-struct Geo: Codable {
+struct Geo: Decodable {
     let lat, lng: String?
 }
 
 // MARK: - Company
-struct Company: Codable {
+struct Company: Decodable {
     let name, catchPhrase, bs: String?
 }
